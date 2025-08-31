@@ -1,0 +1,29 @@
+{
+   readline_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:xmalloc
+   fun:_rl_add_history
+}
+
+{
+   mlx42_internal
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:mlx_init
+   ...
+}
+{
+   Ignore_GLFW_Addr8
+   Memcheck:Addr8
+   fun:ft_free_2d
+   fun:clean_rays
+   fun:clean_assets
+   fun:cub3d_ends
+   fun:handler_close
+   obj:/usr/lib/x86_64-linux-gnu/libglfw.so.3.3
+   fun:mlx_loop
+   fun:main
+}
