@@ -6,13 +6,13 @@
 /*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:00:42 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/02 12:31:58 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:34:52 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static  void	realloc_buffer(char **buffer, int size)
+static void	realloc_buffer(char **buffer, int size)
 {
 	int		i;
 	char	*new_buffer;

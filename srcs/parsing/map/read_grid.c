@@ -6,7 +6,7 @@
 /*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:06:58 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/02 12:30:00 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:37:18 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	grid_copy_n_padding(t_map *map, char **new_grid)
 	row = -1;
 	if (!map || !map->grid)
 		return (EXIT_FAILURE);
-    while (map->grid[++row])
-    {
+	while (map->grid[++row])
+	{
 		new_grid[row] = (char *)ft_calloc(map->max_cols + 1, sizeof(char));
 		if (!new_grid[row])
 			return (err_w_code("Grid copy fails", EXIT_FAILURE));

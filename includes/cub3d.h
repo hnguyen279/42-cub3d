@@ -6,7 +6,7 @@
 /*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:57:55 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/02 12:02:43 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:33:54 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int		get_color(char **rgb_colors, int *ceil_or_floor);
 int		all_white_spaces(char *str);
 
 /* Map parsing */
+int		path_check(char *path);
 int		read_map(int fd, t_cub *cub);
 int		read_element(t_map *map, char *line);
 int		read_grid(t_map *map, char *line);

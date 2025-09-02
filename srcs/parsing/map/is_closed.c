@@ -6,7 +6,7 @@
 /*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:04:01 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/02 12:33:29 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:36:36 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char	**assign_newgrid(t_map *map, int offset)
 	int		col;
 	char	**new_grid;
 
-	new_grid = init_grid(map->max_rows + 2 * offset, map->max_cols + 2 * offset);
+	new_grid = init_grid(map->max_rows + 2 * offset,
+			map->max_cols + 2 * offset);
 	if (!new_grid)
 	{
 		error_msg("Error: Init grid fails");
@@ -61,9 +62,10 @@ char	**assign_newgrid(t_map *map, int offset)
 	return (new_grid);
 }
 
-static  int	floodfill_player(char **grid, int row, int col)
+static int	floodfill_player(char **grid, int row, int col)
 {
-	if (row < 0 || col < 0 || !grid[row] || !grid[row][col] || grid[row][col] == ' ')
+	if (row < 0 || col < 0 || !grid[row]
+		|| !grid[row][col] || grid[row][col] == ' ')
 		return (1);
 	if (grid[row][col] == '1')
 		return (0);
@@ -76,7 +78,8 @@ static  int	floodfill_player(char **grid, int row, int col)
 
 static int	floodfill_wall(char **grid, int row, int col)
 {
-	if (row < 0 || col < 0 || !grid[row] || !grid[row][col] || grid[row][col] == '1')
+	if (row < 0 || col < 0 || !grid[row]
+		|| !grid[row][col] || grid[row][col] == '1')
 		return (0);
 	if (grid[row][col] == '0')
 		return (1);

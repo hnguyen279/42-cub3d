@@ -6,7 +6,7 @@
 /*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:04:51 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/02 12:32:43 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:36:55 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	comma_count(char *str)
 
 void	free_ptr(char **str)
 {
-    free(*str);
-    *str = NULL;
+	free(*str);
+	*str = NULL;
 }
 
 bool	dir_ele_done(t_map *map)

@@ -6,7 +6,7 @@
 /*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:02:15 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/02 12:31:33 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:35:15 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static double	get_direction(char c)
 	return (EXIT_SUCCESS);
 }
 
-static  int	player_validation(t_cub *cub, int row)
+static int	player_validation(t_cub *cub, int row)
 {
 	int	col;
 	int	offset;
