@@ -6,7 +6,7 @@
 /*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:58:21 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/02 11:59:19 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:54:45 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,8 @@ int	render_frame(t_cub *cub)
 {
 	// Clear the screen with ceiling color
 	clear_screen(cub);
-
 	// Render the map grid
 	render_map_grid(cub);
-
 	return (EXIT_SUCCESS);
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 18:05:21 by thi-mngu          #+#    #+#             */
+/*   Updated: 2025/09/02 18:05:49 by thi-mngu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	init_cub(t_cub *cub)
@@ -14,17 +26,11 @@ static void	init_cub(t_cub *cub)
 	cub->map.height = 0;
 	cub->map.max_cols = 0;
 	cub->map.max_rows = 0;
-
-	// Initialize MLX42 pointers
 	cub->mlx.mlx = NULL;
 	cub->mlx.img = NULL;
-
-	// Initialize texture pointers
 	cub->wall_tex.tex = NULL;
 	cub->space_tex.tex = NULL;
 	cub->player_tex.tex = NULL;
-
-	// Initialize player
 	cub->player.cur_pos.x = 0;
 	cub->player.cur_pos.y = 0;
 	cub->player.prev_pos.x = 0;
@@ -60,8 +66,6 @@ void	cleanup_mlx(t_cub *cub)
 	if (cub->mlx.mlx)
 		mlx_terminate(cub->mlx.mlx);
 }
-
-
 
 static void	key_hook(mlx_key_data_t keydata, void *param)
 {
@@ -112,6 +116,13 @@ void	cleanup_cub(t_cub *cub)
 	}
 }
 
+static int cleanup_w_err(t_cub cub, char *msg)
+{
+	error_msg(msg);
+	cleanup_cub(&cub);
+	return (EXIT_FAILURE);
+}
+
 int	main(int argc, char **argv)
 {
 	t_cub	cub;
@@ -123,36 +134,16 @@ int	main(int argc, char **argv)
 	}
 	init_cub(&cub);
 	if (parse_cub_file(argv[1], &cub) == EXIT_FAILURE)
-	{
-		error_msg("Failed to parse cub file");
-		cleanup_cub(&cub);
-		return (EXIT_FAILURE);
-	}
+		return (cleanup_w_err("Failed to parse cub file"));
 	printf("File parsed successfully!\n");
 	if (init_mlx(&cub) == EXIT_FAILURE)
-	{
-		error_msg("Graphics initialization failed");
-		cleanup_cub(&cub);
-		return (EXIT_FAILURE);
-	}
+		return (cleanup_w_err("Graphics initialization failed"));
 	if (load_textures(&cub) == EXIT_FAILURE)
-	{
-		error_msg("Texture loading failed");
-		cleanup_cub(&cub);
-		return (EXIT_FAILURE);
-	}
+		return (cleanup_w_err("Texture loading failed"));
 	if (render_frame(&cub) == EXIT_FAILURE)
-	{
-		error_msg("Rendering failed");
-		cleanup_cub(&cub);
-		return (EXIT_FAILURE);
-	}
+		return (cleanup_w_err("Rendering failed"));
 	if (mlx_image_to_window(cub.mlx.mlx, cub.mlx.img, 0, 0) == -1)
-	{
-		error_msg("Failed to display image");
-		cleanup_cub(&cub);
-		return (EXIT_FAILURE);
-	}
+		return (cleanup_w_err("Failed to display image"));
 	mlx_key_hook(cub.mlx.mlx, key_hook, &cub);
 	fflush(stdout);
 	mlx_loop(cub.mlx.mlx);
