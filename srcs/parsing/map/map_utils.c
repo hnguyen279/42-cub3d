@@ -1,24 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 12:04:51 by thi-mngu          #+#    #+#             */
+/*   Updated: 2025/09/02 12:32:43 by thi-mngu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int comma_count(char *str)
+int	comma_count(char *str)
 {
-    int count;
-    int i;
+	int	count;
+	int	i;
 
-    if (!str)
-        return (0);
-    count = 0;
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] == ',')
-            count++;
-        i++;
-    }
-    return (count);
+	if (!str)
+		return (0);
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			count++;
+		i++;
+	}
+	return (count);
 }
 
-void    free_ptr(char **str)
+void	free_ptr(char **str)
 {
     free(*str);
     *str = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: your-username <your-email@student.hive.fi> +#+  +:+       +#+        */
+/*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/XX XX:XX:XX by your-username    #+#    #+#             */
-/*   Updated: 2025/01/XX XX:XX:XX by your-username    ###   ########.fr       */
+/*   Created: 2025/09/02 11:57:55 by thi-mngu          #+#    #+#             */
+/*   Updated: 2025/09/02 12:02:43 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@
 # define WINDOW_HEIGHT 800
 # define FOV 60.0
 # define RAY_STEP 0.1
+
+#define PI 3.14159265359
+#define CELL_PX 64
+#define M_PLAYER_SIZE 32
 
 /* Element types */
 typedef enum e_ele_type
@@ -151,4 +155,4 @@ void	draw_texture_to_screen(t_cub *cub, t_texture *tex, int x, int y, int width,
 int		parse_cub_file(char *filename, t_cub *cub);
 void	cleanup_cub(t_cub *cub);
 
-#endif 
+#endif

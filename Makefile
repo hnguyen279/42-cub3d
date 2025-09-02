@@ -52,9 +52,15 @@ all: ${LIBFT} .mlx42 ${NAME}
 %.o: %.c
 	${CC} ${CFLAGS} -o $@ -c $< ${INCLUDE}
 
-# Build executable
+# # Build executable
+# ${NAME}: ${OBJS} ${LIBFT} .mlx42
+# 	${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MLX42} ${MLX42_DIR}/build/_deps/glfw-build/src/libglfw3.a -lm -lX11 -lXext -lXrandr -lXinerama -lXcursor -lXi -o ${NAME}
+
+
 ${NAME}: ${OBJS} ${LIBFT} .mlx42
-	${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MLX42} ${MLX42_DIR}/build/_deps/glfw-build/src/libglfw3.a -lm -lX11 -lXext -lXrandr -lXinerama -lXcursor -lXi -o ${NAME}
+	${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MLX42} \
+	-lglfw -lm -lX11 -lXext -lXrandr -lXinerama -lXcursor -lXi \
+	-o ${NAME}
 
 # Build libft
 ${LIBFT}:

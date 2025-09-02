@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 11:58:21 by thi-mngu          #+#    #+#             */
+/*   Updated: 2025/09/02 11:59:19 by thi-mngu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 // Clear the screen with a background color
@@ -17,14 +29,11 @@ void	render_map_grid(t_cub *cub)
 {
 	if (!cub->map.grid)
 		return;
-	
+
 	int tile_size = 32; // Size of each tile in pixels
 	int start_x = 50;   // Starting X position
 	int start_y = 50;   // Starting Y position
-	
-	printf("Rendering map grid with MLX42...\n");
-	printf("Grid dimensions: %dx%d\n", cub->map.max_cols, cub->map.max_rows);
-	
+
 	for (int row = 0; row < cub->map.max_rows && cub->map.grid[row]; row++)
 	{
 		int row_len = ft_strlen(cub->map.grid[row]);
@@ -33,15 +42,11 @@ void	render_map_grid(t_cub *cub)
 			char cell = cub->map.grid[row][col];
 			int x = start_x + col * tile_size;
 			int y = start_y + row * tile_size;
-			
+
 			if (cell == '1') // Wall
-			{
 				draw_texture_to_screen(cub, &cub->wall_tex, x, y, tile_size, tile_size);
-			}
 			else if (cell == '0') // Space
-			{
 				draw_texture_to_screen(cub, &cub->space_tex, x, y, tile_size, tile_size);
-			}
 			else if (cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W') // Player
 			{
 				// Draw space first, then player on top
@@ -50,7 +55,7 @@ void	render_map_grid(t_cub *cub)
 			}
 		}
 	}
-	
+
 	printf("Map grid rendered successfully!\n");
 }
 
@@ -59,10 +64,10 @@ int	render_frame(t_cub *cub)
 {
 	// Clear the screen with ceiling color
 	clear_screen(cub);
-	
+
 	// Render the map grid
 	render_map_grid(cub);
-	
+
 	return (EXIT_SUCCESS);
 }
 
