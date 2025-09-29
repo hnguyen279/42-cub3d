@@ -1,0 +1,72 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thi-huon <thi-huon@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/26 05:03:57 by thi-huon          #+#    #+#             */
+/*   Updated: 2025/09/26 05:03:57 by thi-huon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+static void	draw_minimap_tile(mlx_image_t *img, int x0, int y0, uint32_t c) //drawn one tile MINI_TILExMINI_TILE (pixel)
+{
+	int	i;
+	int	j;
+	int	xx;
+	int	yy;
+
+	if (!img)
+		return ;
+	i = 0;
+	while (i < MINI_TILE)
+	{
+		xx = x0 + i;
+		j = 0;
+		while (j < MINI_TILE)
+		{
+			yy = y0 + j;
+			if ((unsigned)x0 + i < img->width && (unsigned)y0 + j < img->height)
+				mlx_put_pixel(img, xx, yy, c);
+			j++;
+		}
+		i++;
+	}
+}
+
+static uint32_t	get_minimap_color(char ch)
+{
+	if (ch == '1')
+		return (pack_rgba(0, 0, 255, 255));
+	else if (ch == '0' || ch == 'N' || ch == 'S' || ch == 'E' || ch == 'W')
+		return (pack_rgba(200, 200, 200, 255));
+	return (pack_rgba(0, 0, 0, 255));
+}
+
+void	render_full_map(t_cub *cub)
+{
+	mlx_image_t	*dst;
+	int			my;
+	int			mx;
+	char		ch;
+
+	dst = cub->assets.map;
+	if (!dst)
+		return ;
+	fill_image(dst, pack_rgba(0, 0, 0, 255));
+	my = -1;
+	while (++my < cub->map.max_rows)
+	{
+		mx = -1;
+		while (++mx < cub->map.max_cols)
+		{
+			ch = cub->map.grid[my][mx];
+			if (ch != ' ')
+				draw_minimap_tile(dst, mx * MINI_TILE, my * MINI_TILE,
+					get_minimap_color(ch));
+		}
+	}
+}

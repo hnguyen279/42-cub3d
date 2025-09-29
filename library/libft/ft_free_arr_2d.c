@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_arr_2d.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: core <core@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thi-huon <thi-huon@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 12:05:56 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/06/06 20:52:09 by core             ###   ########.fr       */
+/*   Updated: 2025/09/11 14:40:51 by thi-huon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 void	ft_free_arr_2d(char **arr)
 {

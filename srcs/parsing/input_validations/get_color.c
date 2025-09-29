@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thi-huon <thi-huon@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:00:20 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/02 12:32:07 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/09/29 10:11:14 by thi-huon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ int	get_color(char **rgb_colors, int *ceil_or_floor)
 	red = get_single_color(rgb_colors[0]);
 	green = get_single_color(rgb_colors[1]);
 	blue = get_single_color(rgb_colors[2]);
-	if (red == -1 || green == -1 || blue == -1)
+	if (red < 0 || green < 0 || blue < 0)
 		return (err_w_code("Invalid color value", EXIT_FAILURE));
 	if (red > 255 || green > 255 || blue > 255)
 		return (err_w_code("Color value out of range (0-255)", EXIT_FAILURE));
-	*ceil_or_floor = (red << 16) + (green << 8) + blue;
+	//*ceil_or_floor = (red << 16) + (green << 8) + blue;
+	*ceil_or_floor = pack_rgba((uint8_t)red, (uint8_t)green, (uint8_t)blue, 255); //H add
 	return (EXIT_SUCCESS);
 }

@@ -1,9 +1,9 @@
-NAME := cub3d
+NAME := cub3D
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
 
-LIBFT_DIR		:= ./library/libft
+LIBFT_DIR		:= ./library
 LIBFT			:= ${LIBFT_DIR}/libft.a
 
 MLX42_DIR		:= ./MLX42
@@ -25,22 +25,47 @@ INPUT_VALIDATIONS_C := ft_clean_arr.c \
 					   utils.c \
 					   error_handling.c
 
-MAP_C			:= grid_validation.c \
-				   is_closed.c \
-				   map_utils.c \
-				   png_validation.c \
-				   read_elements.c \
-				   read_grid.c \
-				   read_map.c
+MAP_C				:=	grid_validation.c \
+						is_closed.c \
+						map_utils.c \
+						png_validation.c \
+						read_elements.c \
+						read_grid.c \
+						read_map.c
 
-EXECUTION_C		:= textures.c \
-				   render.c
+RENDER_ASSETS_C			:=	render_assets.c \
+							image_utils.c \
+							load_textures.c 
+
+INIT_AND_DISPLAY_C	:=	display.c \
+						init.c 
+
+INPUT_C				:= 	input_camera.c \
+						input_movement.c \
+						input_utils.c 
+
+MINI_MAP_C			:=	minimap.c \
+						minimap_player.c \
+						minimap_viewport.c 
+
+RAY_CASTING_C		:=	wall_column.c \
+						dda_core.c \
+						dda_hit.c \
+						ray_casting.c
+
+CLEAN_UP_C			:=	clean_game.c \
+						error_clean.c 
 
 # All source files
-SRCS			:= $(addprefix ${MAIN}/, ${MAIN_C}) \
-				   $(addprefix ${PARSING}/input_validations/, ${INPUT_VALIDATIONS_C}) \
-				   $(addprefix ${PARSING}/map/, ${MAP_C}) \
-				   $(addprefix ${EXECUTION}/, ${EXECUTION_C})
+SRCS			:=	$(addprefix ${MAIN}/, ${MAIN_C}) \
+				   	$(addprefix ${PARSING}/input_validations/, ${INPUT_VALIDATIONS_C}) \
+				   	$(addprefix ${PARSING}/map/, ${MAP_C}) \
+				   	$(addprefix ${EXECUTION}/render_assets/, ${RENDER_ASSETS_C}) \
+					$(addprefix ${EXECUTION}/init_and_display/, ${INIT_AND_DISPLAY_C}) \
+				   	$(addprefix ${EXECUTION}/input/, ${INPUT_C}) \
+				   	$(addprefix ${EXECUTION}/mini_map/, ${MINI_MAP_C}) \
+				   	$(addprefix ${EXECUTION}/ray_casting/, ${RAY_CASTING_C}) \
+					$(addprefix ${EXECUTION}/clean_up/, ${CLEAN_UP_C})
 
 # Object files
 OBJS			:= ${SRCS:.c=.o}
