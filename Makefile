@@ -1,7 +1,7 @@
 NAME := cub3D
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -g -Wall -Wextra -Werror
 
 LIBFT_DIR		:= ./library
 LIBFT			:= ${LIBFT_DIR}/libft.a

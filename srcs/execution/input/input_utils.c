@@ -24,18 +24,17 @@ double	norm_angle(double a)
 	return (a);
 }
 
-int	is_wall(t_map *map, double x, double y)
+int	is_wall(const t_map *map, int x, int y)
 {
-	int		map_x;
-	int		map_y;
-	char	c;
+	int	cols;
+	char c;
 
-	map_x = (int)x;
-	map_y = (int)y;
-	if (map_x < 0 || map_x >= map->max_cols || map_y < 0
-		|| map_y >= map->max_rows)
+	if (x < 0 || y < 0 || y >= map->max_rows)
 		return (1);
-	c = map->grid[map_y][map_x];
+	cols = (int)ft_strlen(map->grid[y]);
+	if (x >= cols)
+		return (1);
+	c = map->grid[y][x];
 	if (c == '1' || c == ' ') //c == ' '
 		return (1);
 	return (0);

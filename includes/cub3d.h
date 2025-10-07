@@ -238,7 +238,7 @@ void	load_textures(t_cub *cub);
 void	cub3d_init_assets(t_cub *cub);
 
 double	norm_angle(double a);
-int	is_wall(t_map *map, double x, double y);
+int	is_wall(const t_map *map, int x, int y);
 void	mouse_update(t_cub *cub);
 int	rotate_and_escape(t_cub *cub);
 void	handle_input(t_cub *cub);

@@ -46,27 +46,55 @@ static uint32_t	get_minimap_color(char ch)
 	return (pack_rgba(0, 0, 0, 255));
 }
 
+// void	render_full_map(t_cub *cub) //lack check col no same length
+// {
+// 	mlx_image_t	*dst;
+// 	int			my;
+// 	int			mx;
+// 	char		ch;
+
+// 	dst = cub->assets.map;
+// 	if (!dst)
+// 		return ;
+// 	fill_image(dst, pack_rgba(0, 0, 0, 255));
+// 	my = -1;
+// 	while (++my < cub->map.max_rows)
+// 	{
+// 		mx = -1;
+// 		while (++mx < cub->map.max_cols)
+// 		{
+// 			ch = cub->map.grid[my][mx];
+// 			if (ch != ' ')
+// 				draw_minimap_tile(dst, mx * MINI_TILE, my * MINI_TILE,
+// 					get_minimap_color(ch));
+// 		}
+// 	}
+//}
+
 void	render_full_map(t_cub *cub)
 {
 	mlx_image_t	*dst;
 	int			my;
 	int			mx;
-	char		ch;
+	int			cols;
+	char		*row;
 
-	dst = cub->assets.map;
-	if (!dst)
+	if (!cub || !cub->assets.map || !cub->map.grid)
 		return ;
+	dst = cub->assets.map;
 	fill_image(dst, pack_rgba(0, 0, 0, 255));
 	my = -1;
 	while (++my < cub->map.max_rows)
 	{
+		row = cub->map.grid[my];
+		if (!row)
+			continue ;
+		cols = (int)ft_strlen(row);
 		mx = -1;
-		while (++mx < cub->map.max_cols)
-		{
-			ch = cub->map.grid[my][mx];
-			if (ch != ' ')
+		while (++mx < cols)
+			if (row[mx] != ' ')
 				draw_minimap_tile(dst, mx * MINI_TILE, my * MINI_TILE,
-					get_minimap_color(ch));
-		}
+					get_minimap_color(row[mx]));
 	}
 }
+
