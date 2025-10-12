@@ -21,7 +21,7 @@ static int	clampi(int v, int lo, int hi)
 	return (v);
 }
 
-static void	minimap_src_xy(t_cub *cub, int wh[2], int xy[2]) //x0, y0 coordinates top left of src_windown
+static void	minimap_src_xy(t_cub *cub, int wh[2], int xy[2])
 {
 	int	ppx;
 	int	ppy;
@@ -30,13 +30,13 @@ static void	minimap_src_xy(t_cub *cub, int wh[2], int xy[2]) //x0, y0 coordinate
 
 	ppx = (int)(cub->player.cur_pos.x * MINI_TILE);
 	ppy = (int)(cub->player.cur_pos.y * MINI_TILE);
-	x0 = ppx - wh[0] / 2; //player in middle src_windown
+	x0 = ppx - wh[0] / 2;
 	y0 = ppy - wh[1] / 2;
-	if (wh[0] > (int)cub->assets.map->width) //limit size of src_windown
+	if (wh[0] > (int)cub->assets.map->width)
 		wh[0] = (int)cub->assets.map->width;
 	if (wh[1] > (int)cub->assets.map->height)
 		wh[1] = (int)cub->assets.map->height;
-	x0 = clampi(x0, 0, (int)cub->assets.map->width - wh[0]); //x0 + wh[0] ≤ map->width avoid scr_window not over map
+	x0 = clampi(x0, 0, (int)cub->assets.map->width - wh[0]);
 	y0 = clampi(y0, 0, (int)cub->assets.map->height - wh[1]);
 	xy[0] = x0;
 	xy[1] = y0;
@@ -53,7 +53,7 @@ static void	blit_scaled(mlx_image_t *src, mlx_image_t *dst, int xy[2],
 	y = 0;
 	while (y < (int)dst->height)
 	{
-		sy = xy[1] + (int)((int64_t)y * wh[1] / (int)dst->height); //for int64_t big map  ?? need/ handle
+		sy = xy[1] + (int)((int64_t)y * wh[1] / (int)dst->height);
 		x = 0;
 		while (x < (int)dst->width)
 		{

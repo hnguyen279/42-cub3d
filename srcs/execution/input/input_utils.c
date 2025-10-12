@@ -6,7 +6,7 @@
 /*   By: thi-huon <thi-huon@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 06:12:55 by thi-huon          #+#    #+#             */
-/*   Updated: 2025/09/26 06:12:55 by thi-huon         ###   ########.fr       */
+/*   Updated: 2025/10/12 20:26:32 by thi-huon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ double	norm_angle(double a)
 
 int	is_wall(const t_map *map, int x, int y)
 {
-	int	cols;
-	char c;
+	int		cols;
+	char	c;
 
 	if (x < 0 || y < 0 || y >= map->max_rows)
 		return (1);
@@ -35,7 +35,7 @@ int	is_wall(const t_map *map, int x, int y)
 	if (x >= cols)
 		return (1);
 	c = map->grid[y][x];
-	if (c == '1' || c == ' ') //c == ' '
+	if (c == '1' || c == ' ')
 		return (1);
 	return (0);
 }

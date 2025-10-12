@@ -54,8 +54,8 @@ static int	player_validation(t_cub *cub, int row)
 
 int	grid_validation(t_cub *cub, int fd)
 {
-	int		 row;
-	t_dpoint start_px;
+	int			row;
+	t_dpoint	start_px;
 
 	row = 0;
 	if (!dir_ele_done(&cub->map) || !cub->map.grid[0])

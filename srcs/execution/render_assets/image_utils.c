@@ -47,7 +47,7 @@ uint32_t	pack_rgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 	return (((uint32_t)r << 24) | ((uint32_t)g << 16) | ((uint32_t)b << 8) | a);
 }
 
-uint32_t	get_tex_color(mlx_image_t *img, int tex_x, int tex_y) //get the color of a pixel in the texture at coordinates (tex_x, tex_y)
+uint32_t	get_tex_color(mlx_image_t *img, int tex_x, int tex_y)
 {
 	uint8_t	*p;
 
@@ -61,6 +61,6 @@ uint32_t	get_tex_color(mlx_image_t *img, int tex_x, int tex_y) //get the color o
 		tex_x = (int)img->width - 1;
 	if (tex_y >= (int)img->height)
 		tex_y = (int)img->height - 1;
-	p = &img->pixels[(tex_y * img->width + tex_x) * 4]; //4 byte (R,G,B,A)
+	p = &img->pixels[(tex_y * img->width + tex_x) * 4];
 	return (pack_rgba(p[0], p[1], p[2], p[3]));
 }

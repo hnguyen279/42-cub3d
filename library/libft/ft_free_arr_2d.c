@@ -6,7 +6,7 @@
 /*   By: thi-huon <thi-huon@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 12:05:56 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/11 14:40:51 by thi-huon         ###   ########.fr       */
+/*   Updated: 2025/10/12 21:18:50 by thi-huon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ void	ft_free_arr_2d(char **arr)
 	free(arr);
 	arr = NULL;
 }
-

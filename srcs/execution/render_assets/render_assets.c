@@ -63,6 +63,6 @@ void	cub3d_init_assets(t_cub *cub)
 	load_textures(cub);
 	create_buffers(cub);
 	attach_layers(cub);
-	place_player_hud(cub, -50); //position of player
+	place_player_hud(cub, -50);
 	render_full_map(cub);
 }

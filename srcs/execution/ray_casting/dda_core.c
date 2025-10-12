@@ -17,7 +17,7 @@ static void	dda_set_deltas(t_ddaw *w)
 	if (w->rdx == 0.0)
 		w->ddx = DBL_MAX;
 	else
-		w->ddx = fabs(1.0 / w->rdx); //consfuse
+		w->ddx = fabs(1.0 / w->rdx);
 	if (w->rdy == 0.0)
 		w->ddy = DBL_MAX;
 	else
@@ -53,7 +53,7 @@ void	dda_init(t_cub *cub, t_cam *cam, int x, t_ddaw *w)
 	double	cx;
 
 	cx = 2.0 * ((double)x) / (double)WINDOW_WIDTH - 1.0;
-	w->rdx = cam->dirx + cam->plx * cx; //formula???
+	w->rdx = cam->dirx + cam->plx * cx;
 	w->rdy = cam->diry + cam->ply * cx;
 	w->mx = (int)floor(cub->player.cur_pos.x);
 	w->my = (int)floor(cub->player.cur_pos.y);

@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static void	draw_minimap_tile(mlx_image_t *img, int x0, int y0, uint32_t c) //drawn one tile MINI_TILExMINI_TILE (pixel)
+static void	draw_minimap_tile(mlx_image_t *img, int x0, int y0, uint32_t c)
 {
 	int	i;
 	int	j;
@@ -46,31 +46,6 @@ static uint32_t	get_minimap_color(char ch)
 	return (pack_rgba(0, 0, 0, 255));
 }
 
-// void	render_full_map(t_cub *cub) //lack check col no same length
-// {
-// 	mlx_image_t	*dst;
-// 	int			my;
-// 	int			mx;
-// 	char		ch;
-
-// 	dst = cub->assets.map;
-// 	if (!dst)
-// 		return ;
-// 	fill_image(dst, pack_rgba(0, 0, 0, 255));
-// 	my = -1;
-// 	while (++my < cub->map.max_rows)
-// 	{
-// 		mx = -1;
-// 		while (++mx < cub->map.max_cols)
-// 		{
-// 			ch = cub->map.grid[my][mx];
-// 			if (ch != ' ')
-// 				draw_minimap_tile(dst, mx * MINI_TILE, my * MINI_TILE,
-// 					get_minimap_color(ch));
-// 		}
-// 	}
-//}
-
 void	render_full_map(t_cub *cub)
 {
 	mlx_image_t	*dst;
@@ -97,4 +72,3 @@ void	render_full_map(t_cub *cub)
 					get_minimap_color(row[mx]));
 	}
 }
-

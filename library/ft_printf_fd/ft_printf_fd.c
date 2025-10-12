@@ -25,9 +25,11 @@ static int	ft_check_format(va_list args, char c, int fd)
 	else if (c == 'u')
 		return (ft_putnbr_unsigned(va_arg(args, unsigned int), fd));
 	else if (c == 'x')
-		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef", fd));
+		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef",
+				fd));
 	else if (c == 'X')
-		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF", fd));
+		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF",
+				fd));
 	else if (c == '%')
 		return (ft_putchar('%', fd));
 	return (-1);

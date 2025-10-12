@@ -17,10 +17,10 @@ static t_cam	make_cam(t_player *p)
 	t_cam	c;
 	double	ps;
 
-	c.dirx = cos(p->angle); //(x, y) coordinates of angle
+	c.dirx = cos(p->angle);
 	c.diry = sin(p->angle);
-	ps = tan((FOV * PI / 180.0) * 0.5); //change FOV (Field Of Vision) degree to radian, /2
-	c.plx = -c.diry * ps; //(x, y) coordinates of plane
+	ps = tan((FOV * PI / 180.0) * 0.5);
+	c.plx = -c.diry * ps;
 	c.ply = c.dirx * ps;
 	return (c);
 }

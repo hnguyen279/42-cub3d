@@ -23,7 +23,7 @@ static void	delete_img(mlx_t *mlx, mlx_image_t **img)
 
 static void	delete_textures(t_cub *cub)
 {
-    delete_img(cub->mlx, &cub->assets.walls[NO]);
+	delete_img(cub->mlx, &cub->assets.walls[NO]);
 	delete_img(cub->mlx, &cub->assets.walls[SO]);
 	delete_img(cub->mlx, &cub->assets.walls[EA]);
 	delete_img(cub->mlx, &cub->assets.walls[WE]);
@@ -56,26 +56,6 @@ static void	clean_rays(t_ray ***rays)
 	*rays = NULL;
 }
 
-// static void	free_map_grid(t_map *map) // this function have in parsing
-// {
-// 	int	i;
-
-// 	if (!map || !map->grid)
-// 		return ;
-// 	i = 0;
-// 	while (i < map->max_rows)
-// 	{
-// 		if (map->grid[i])
-// 		{
-// 			free(map->grid[i]);
-// 			map->grid[i] = NULL;
-// 		}
-// 		i++;
-// 	}
-// 	free(map->grid);
-// 	map->grid = NULL;
-// }
-
 void	cub3d_cleanup(t_cub *cub)
 {
 	if (!cub)
@@ -85,7 +65,6 @@ void	cub3d_cleanup(t_cub *cub)
 	delete_textures(cub);
 	clean_rays(&cub->rays);
 	map_cleanup(&cub->map);
-	//free_map_grid(&cub->map); in map_cleanup
 	if (cub->mlx)
 		mlx_terminate(cub->mlx);
 }

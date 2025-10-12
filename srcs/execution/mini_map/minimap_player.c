@@ -21,37 +21,37 @@ static void	player_minimap_center(t_cub *cub, int xy[2], int wh[2], int out[2])
 
 	ppx = (int)(cub->player.cur_pos.x * MINI_TILE);
 	ppy = (int)(cub->player.cur_pos.y * MINI_TILE);
-	rpx = (ppx - xy[0]) / (float)wh[0]; //rpx are the player’s normalized relative coordinates within src_window [xy, wh].
+	rpx = (ppx - xy[0]) / (float)wh[0];
 	rpy = (ppy - xy[1]) / (float)wh[1];
-	out[0] = (int)(rpx * (int)cub->assets.minimap_img->width); //x in minimap_img
+	out[0] = (int)(rpx * (int)cub->assets.minimap_img->width);
 	out[1] = (int)(rpy * (int)cub->assets.minimap_img->height);
 }
 
-	static void	draw_filled_circle(mlx_image_t *ov, int c[2], int r, uint32_t col)
-	{
-		int	dy;
-		int	dx;
-		int	px;
-		int	py;
+static void	draw_filled_circle(mlx_image_t *ov, int c[2], int r, uint32_t col)
+{
+	int	dy;
+	int	dx;
+	int	px;
+	int	py;
 
-		dy = -r;
-		while (dy <= r)
+	dy = -r;
+	while (dy <= r)
+	{
+		dx = -r;
+		while (dx <= r)
 		{
-			dx = -r;
-			while (dx <= r)
+			if (dx * dx + dy * dy <= r * r)
 			{
-				if (dx * dx + dy * dy <= r * r) //(x-x0)2 + (y-y0)2 < r2
-				{
-					px = c[0] + dx;
-					py = c[1] + dy;
-					if ((unsigned)px < ov->width && (unsigned)py < ov->height)
-						mlx_put_pixel(ov, px, py, col);
-				}
-				dx++;
+				px = c[0] + dx;
+				py = c[1] + dy;
+				if ((unsigned)px < ov->width && (unsigned)py < ov->height)
+					mlx_put_pixel(ov, px, py, col);
 			}
-			dy++;
+			dx++;
 		}
+		dy++;
 	}
+}
 
 void	draw_player_dot(t_cub *cub, int xy[2], int wh[2])
 {

@@ -6,7 +6,7 @@
 /*   By: thi-huon <thi-huon@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 05:42:49 by thi-huon          #+#    #+#             */
-/*   Updated: 2025/09/26 05:42:49 by thi-huon         ###   ########.fr       */
+/*   Updated: 2025/10/12 20:25:59 by thi-huon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	mouse_update(t_cub *cub)
 	int		cur_x;
 	int		cur_y;
 	int		delta_x;
-	double	sens_per_sec; //radian/pixel/second
 	double	dt;
+	double	sens_per_sec;
 
 	mlx_get_mouse_pos(cub->mlx, &cur_x, &cur_y);
 	delta_x = cur_x - cub->prev_mouse_x;
@@ -41,7 +41,7 @@ int	rotate_and_escape(t_cub *cub)
 	}
 	dt = cub->mlx->delta_time;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT))
-		cub->player.angle -= ROTATE_SPEED * dt; //// ROTATE_SPEED rad/s
+		cub->player.angle -= ROTATE_SPEED * dt;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_RIGHT))
 		cub->player.angle += ROTATE_SPEED * dt;
 	cub->player.angle = norm_angle(cub->player.angle);

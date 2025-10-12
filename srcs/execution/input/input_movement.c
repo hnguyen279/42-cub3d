@@ -6,65 +6,11 @@
 /*   By: thi-huon <thi-huon@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 05:42:52 by thi-huon          #+#    #+#             */
-/*   Updated: 2025/09/26 05:42:52 by thi-huon         ###   ########.fr       */
+/*   Updated: 2025/10/12 20:26:23 by thi-huon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// static void	move_ws(t_cub *cub, double step, double dir_x, double dir_y)
-// {
-// 	double	nx;
-// 	double	ny;
-
-// 	if (mlx_is_key_down(cub->mlx, MLX_KEY_W))
-// 	{
-// 		nx = cub->player.cur_pos.x + dir_x * step;
-// 		ny = cub->player.cur_pos.y + dir_y * step;
-// 		if (!is_wall(&cub->map, nx, cub->player.cur_pos.y))
-// 			cub->player.cur_pos.x = nx;
-// 		if (!is_wall(&cub->map, cub->player.cur_pos.x, ny))
-// 			cub->player.cur_pos.y = ny;
-// 	}
-// 	if (mlx_is_key_down(cub->mlx, MLX_KEY_S))
-// 	{
-// 		nx = cub->player.cur_pos.x - dir_x * step;
-// 		ny = cub->player.cur_pos.y - dir_y * step;
-// 		if (!is_wall(&cub->map, nx, cub->player.cur_pos.y))
-// 			cub->player.cur_pos.x = nx;
-// 		if (!is_wall(&cub->map, cub->player.cur_pos.x, ny))
-// 			cub->player.cur_pos.y = ny;
-// 	}
-// }
-
-// static void	strafe_ad(t_cub *cub, double step, double dir_x, double dir_y)
-// {
-// 	double	px;
-// 	double	py;
-// 	double	nx;
-// 	double	ny;
-
-// 	px = -dir_y;
-// 	py = dir_x;
-// 	if (mlx_is_key_down(cub->mlx, MLX_KEY_D))
-// 	{
-// 		nx = cub->player.cur_pos.x + px * step;
-// 		ny = cub->player.cur_pos.y + py * step;
-// 		if (!is_wall(&cub->map, nx, cub->player.cur_pos.y))
-// 			cub->player.cur_pos.x = nx;
-// 		if (!is_wall(&cub->map, cub->player.cur_pos.x, ny))
-// 			cub->player.cur_pos.y = ny;
-// 	}
-// 	if (mlx_is_key_down(cub->mlx, MLX_KEY_A))
-// 	{
-// 		nx = cub->player.cur_pos.x - px * step;
-// 		ny = cub->player.cur_pos.y - py * step;
-// 		if (!is_wall(&cub->map, nx, cub->player.cur_pos.y))
-// 			cub->player.cur_pos.x = nx;
-// 		if (!is_wall(&cub->map, cub->player.cur_pos.x, ny))
-// 			cub->player.cur_pos.y = ny;
-// 	}
-// }
 
 static int	collides(const t_map *m, double x, double y, double r)
 {
@@ -86,12 +32,11 @@ static int	collides(const t_map *m, double x, double y, double r)
 	return (0);
 }
 
-
-static void try_move_axis(t_cub *cub, double dx, double dy, int axis)
+static void	try_move_axis(t_cub *cub, double dx, double dy, int axis)
 {
-	double r;
-	double nx;
-	double ny;
+	double	r;
+	double	nx;
+	double	ny;
 
 	r = 0.15;
 	nx = cub->player.cur_pos.x + dx;
@@ -100,15 +45,16 @@ static void try_move_axis(t_cub *cub, double dx, double dy, int axis)
 	{
 		if (!collides(&cub->map, nx, cub->player.cur_pos.y, r))
 			cub->player.cur_pos.x = nx;
-	} 
-	else 
+	}
+	else
 	{
 		if (!collides(&cub->map, cub->player.cur_pos.x, ny, r))
 			cub->player.cur_pos.y = ny;
 	}
 }
 
-static void move_with_radius(t_cub *cub, double step, double dir_x, double dir_y)
+static void	move_with_radius(t_cub *cub, double step, double dir_x,
+		double dir_y)
 {
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_W))
 	{
@@ -146,8 +92,6 @@ void	handle_input(t_cub *cub)
 	dir_y = sin(cub->player.angle);
 	dt = cub->mlx->delta_time;
 	step = MOVE_SPEED * dt;
-	// move_ws(cub, step, dir_x, dir_y);
-	// strafe_ad(cub, step, dir_x, dir_y);
 	move_with_radius(cub, step, dir_x, dir_y);
 	cub->player.angle = norm_angle(cub->player.angle);
 }

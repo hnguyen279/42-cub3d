@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thi-huon <thi-huon@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:06:58 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/10/12 14:10:13 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/10/12 21:21:03 by thi-huon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int	grid_copy_n_padding(t_map *map, char **new_grid)
 {
 	int	row;
 	int	col;
-	int	len;
 
 	row = -1;
 	if (!map || !map->grid)
@@ -27,8 +26,7 @@ static int	grid_copy_n_padding(t_map *map, char **new_grid)
 		if (!new_grid[row])
 			return (err_w_code("Grid copy fails", EXIT_FAILURE));
 		col = 0;
-		len = ft_strlen(map->grid[row]);
-		while (col < len && map->grid[row][col])
+		while (col < (int)ft_strlen(map->grid[row]) && map->grid[row][col])
 		{
 			new_grid[row][col] = map->grid[row][col];
 			col++;
@@ -71,12 +69,12 @@ int	read_grid(t_map *map, char *line)
 
 	if (!map || !line)
 		return (EXIT_FAILURE);
-    len = ft_strlen(line);
-    if (len > 0 && line[len - 1] == '\n')
-    {
-        line[len - 1] = '\0';
-        len--;
-    }
+	len = ft_strlen(line);
+	if (len > 0 && line[len - 1] == '\n')
+	{
+		line[len - 1] = '\0';
+		len--;
+	}
 	if (map_allocation(map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	map->grid[map->max_rows] = ft_strdup(line);
