@@ -14,19 +14,19 @@
 
 static int	process_line(t_cub *cub, char *line)
 {
-	if (!line || !line[0] || (line[0] == ' ' && !line[1]))
-		return (EXIT_SUCCESS);
 	if (!dir_ele_done(&cub->map))
-		return (read_element(&cub->map, line));
-	else
 	{
-		if (!line[0] && cub->map.grid && !cub->map.grid[0])
+		if (!line || !line[0] || (line[0] == ' ' && !line[1]))
 			return (EXIT_SUCCESS);
-		else if (!line[0] && cub->map.grid && cub->map.grid[0])
-			return (err_w_code("Grid has already started", EXIT_FAILURE));
-		return (read_grid(&cub->map, line));
+		return (read_element(&cub->map, line));
 	}
-	return (EXIT_SUCCESS);
+	if (!line || !line[0] || (line[0] == ' ' && !line[1]))
+	{
+		if (cub->map.grid && cub->map.grid[0])
+			return (err_w_code("Grid has already started", EXIT_FAILURE));
+		return (EXIT_SUCCESS);
+	}
+	return (read_grid(&cub->map, line));
 }
 
 int	read_map(int fd, t_cub *cub)

@@ -71,7 +71,13 @@ int	read_grid(t_map *map, char *line)
 
 	if (!map || !line)
 		return (EXIT_FAILURE);
-	len = ft_strlen(line);
+    /* Trim a single trailing newline if present to keep consistent row length */
+    len = ft_strlen(line);
+    if (len > 0 && line[len - 1] == '\n')
+    {
+        line[len - 1] = '\0';
+        len--;
+    }
 	if (map_allocation(map) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	map->grid[map->max_rows] = ft_strdup(line);

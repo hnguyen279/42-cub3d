@@ -28,6 +28,7 @@ INPUT_VALIDATIONS_C := ft_clean_arr.c \
 MAP_C				:=	grid_validation.c \
 						is_closed.c \
 						map_utils.c \
+						path_check.c \
 						png_validation.c \
 						read_elements.c \
 						read_grid.c \
@@ -77,15 +78,15 @@ all: ${LIBFT} .mlx42 ${NAME}
 %.o: %.c
 	${CC} ${CFLAGS} -o $@ -c $< ${INCLUDE}
 
-# # Build executable
-# ${NAME}: ${OBJS} ${LIBFT} .mlx42
-# 	${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MLX42} ${MLX42_DIR}/build/_deps/glfw-build/src/libglfw3.a -lm -lX11 -lXext -lXrandr -lXinerama -lXcursor -lXi -o ${NAME}
-
-
+# Build executable
 ${NAME}: ${OBJS} ${LIBFT} .mlx42
-	${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MLX42} \
-	-lglfw -lm -lX11 -lXext -lXrandr -lXinerama -lXcursor -lXi \
-	-o ${NAME}
+	${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MLX42} ${MLX42_DIR}/build/_deps/glfw-build/src/libglfw3.a -lm -lX11 -lXext -lXrandr -lXinerama -lXcursor -lXi -o ${NAME}
+
+
+# ${NAME}: ${OBJS} ${LIBFT} .mlx42
+# 	${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MLX42} \
+# 	-lglfw -lm -lX11 -lXext -lXrandr -lXinerama -lXcursor -lXi \
+# 	-o ${NAME}
 
 # Build libft
 ${LIBFT}:

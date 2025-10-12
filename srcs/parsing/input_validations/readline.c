@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: core <core@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:00:42 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/02 13:34:52 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/10/08 22:51:56 by core             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,64 @@ static void	realloc_buffer(char **buffer, int size)
 		new_buffer[i] = (*buffer)[i];
 		i++;
 	}
+	new_buffer[i] = '\0';
 	free(*buffer);
 	*buffer = new_buffer;
 }
 
+// static int	process_read(char **line, int fd, int *eof, int size)
+// {
+// 	int		byte;
+// 	int		i;
+// 	char	c;
+
+// 	i = 0;
+// 	while (1)
+// 	{
+// 		byte = read(fd, &c, 1);
+// 		if (byte == -1)
+// 			return (err_w_code("Error: Read file fails", EXIT_FAILURE));
+// 		if (byte == 0)
+// 		{
+// 			*eof = 1;
+// 			break ;
+// 		}
+// 		if (c == '\n')
+// 			break ;
+// 		if (c != '\n')
+// 		{
+// 			(*line)[i] = c;
+// 			i++;
+// 		}
+// 		if (i >= size)
+// 		{
+// 			size += G_BUFFER;
+// 			realloc_buffer(line, size);
+// 			if (!*line)
+// 				return (err_w_code("Error: Realloc fails", EXIT_FAILURE));
+// 		}
+// 	}
+// 	return (EXIT_SUCCESS);
+// }
+
 static int	process_read(char **line, int fd, int *eof, int size)
 {
 	int		byte;
-	int		i;
 	char	c;
+	int		index;
 
-	i = 0;
+	index = 0;
 	while (1)
 	{
 		byte = read(fd, &c, 1);
 		if (byte == -1)
 			return (err_w_code("Error: Read file fails", EXIT_FAILURE));
 		if (byte == 0)
-		{
 			*eof = 1;
+		if (byte == 0 || c == '\n')
 			break ;
-		}
-		if (c == '\n')
-			break ;
-		if (c != '\n')
-		{
-			(*line)[i] = c;
-			i++;
-		}
-		if (i >= size)
+		(*line)[index++] = c;
+		if (index >= size)
 		{
 			size += G_BUFFER;
 			realloc_buffer(line, size);
@@ -66,6 +95,7 @@ static int	process_read(char **line, int fd, int *eof, int size)
 				return (err_w_code("Error: Realloc fails", EXIT_FAILURE));
 		}
 	}
+	(*line)[index] = '\0';
 	return (EXIT_SUCCESS);
 }
 
