@@ -6,7 +6,7 @@
 /*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:06:58 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/02 13:37:18 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/10/12 14:10:13 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	read_grid(t_map *map, char *line)
 
 	if (!map || !line)
 		return (EXIT_FAILURE);
-    /* Trim a single trailing newline if present to keep consistent row length */
     len = ft_strlen(line);
     if (len > 0 && line[len - 1] == '\n')
     {

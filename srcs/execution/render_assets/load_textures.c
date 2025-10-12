@@ -37,10 +37,10 @@ static mlx_image_t	*load_to_image(t_cub *cub, const char *path,
 // #include <time.h>
 
 // static double now_ms(void)
-// { 
-//     struct timespec t; 
-//     clock_gettime(CLOCK_MONOTONIC, &t); 
-//     return t.tv_sec*1000.0 + t.tv_nsec/1e6; 
+// {
+//     struct timespec t;
+//     clock_gettime(CLOCK_MONOTONIC, &t);
+//     return t.tv_sec*1000.0 + t.tv_nsec/1e6;
 // }
 
 // static mlx_image_t *load_to_image(t_cub *cub, const char *path, const char *label)
@@ -49,10 +49,10 @@ static mlx_image_t	*load_to_image(t_cub *cub, const char *path,
 //     mlx_texture_t *tex;
 //     mlx_image_t *img;
 
-//     if (!path) 
+//     if (!path)
 //         cub3d_error_clean(cub, "Texture path is NULL");
 //     tex = mlx_load_png(path);
-//     if (!tex) 
+//     if (!tex)
 //         cub3d_error_clean(cub, "Failed to load texture");
 //     double t1 = now_ms();
 
@@ -67,7 +67,7 @@ static mlx_image_t	*load_to_image(t_cub *cub, const char *path,
 // }
 ////////////////
 
-void	load_textures(t_cub *cub)
+void	load_textures(t_cub *cub) //load fail__> add more codition
 {
 	t_cub3d_assets	*ca;
 

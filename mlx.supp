@@ -1,0 +1,82 @@
+# ==========================
+# Valgrind Suppressions for Cub3D (MLX42 + GLFW)
+# ==========================
+
+# --------------------------
+# Suppress readline leaks
+# --------------------------
+{
+   readline_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable,indirect
+   fun:malloc
+   fun:xmalloc
+   fun:_rl_add_history
+   ...
+}
+
+# --------------------------
+# Suppress MLX42 internal leaks
+# --------------------------
+{
+   mlx42_internal
+   Memcheck:Leak
+   match-leak-kinds: reachable,indirect
+   fun:malloc
+   fun:mlx_init
+   ...
+}
+
+# --------------------------
+# Suppress GLFW-related leaks
+# --------------------------
+{
+   glfw_leak
+   Memcheck:Leak
+   match-leak-kinds: reachable,indirect
+   obj:/usr/lib/x86_64-linux-gnu/libglfw.so.*
+   ...
+}
+
+# --------------------------
+# Suppress OpenGL or GLFW memory accesses
+# --------------------------
+{
+   Ignore_GLFW_Addr8
+   Memcheck:Addr8
+   obj:/usr/lib/x86_64-linux-gnu/libglfw.so.*
+   fun:mlx_loop
+   fun:main
+   ...
+}
+
+# --------------------------
+# Suppress dynamic linker internal string access
+# --------------------------
+{
+   Ignore_dl_strncmp
+   Memcheck:Addr8
+   fun:strncmp
+   fun:is_dst
+   fun:_dl_dst_count
+   fun:expand_dynamic_string_token
+   fun:fillin_rpath.isra.0
+   fun:decompose_rpath
+   fun:cache_rpath
+   fun:_dl_map_object
+   ...
+}
+
+# --------------------------
+# Catch-all for remaining reachable MLX/GLFW allocations
+# --------------------------
+{
+   ignore_all_graphics_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable,indirect
+   obj:/usr/lib/x86_64-linux-gnu/libGL.*
+   obj:/usr/lib/x86_64-linux-gnu/libglfw.so.*
+   fun:mlx_init
+   fun:mlx_loop
+   ...
+}

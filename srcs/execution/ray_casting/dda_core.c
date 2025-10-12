@@ -52,8 +52,8 @@ void	dda_init(t_cub *cub, t_cam *cam, int x, t_ddaw *w)
 {
 	double	cx;
 
-	cx = 2.0 * ((double)x + 0.5) / (double)WINDOW_WIDTH - 1.0;
-	w->rdx = cam->dirx + cam->plx * cx;
+	cx = 2.0 * ((double)x) / (double)WINDOW_WIDTH - 1.0;
+	w->rdx = cam->dirx + cam->plx * cx; //formula???
 	w->rdy = cam->diry + cam->ply * cx;
 	w->mx = (int)floor(cub->player.cur_pos.x);
 	w->my = (int)floor(cub->player.cur_pos.y);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: core <core@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:00:42 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/10/08 22:51:56 by core             ###   ########.fr       */
+/*   Updated: 2025/10/12 13:50:20 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,41 +35,6 @@ static void	realloc_buffer(char **buffer, int size)
 	*buffer = new_buffer;
 }
 
-// static int	process_read(char **line, int fd, int *eof, int size)
-// {
-// 	int		byte;
-// 	int		i;
-// 	char	c;
-
-// 	i = 0;
-// 	while (1)
-// 	{
-// 		byte = read(fd, &c, 1);
-// 		if (byte == -1)
-// 			return (err_w_code("Error: Read file fails", EXIT_FAILURE));
-// 		if (byte == 0)
-// 		{
-// 			*eof = 1;
-// 			break ;
-// 		}
-// 		if (c == '\n')
-// 			break ;
-// 		if (c != '\n')
-// 		{
-// 			(*line)[i] = c;
-// 			i++;
-// 		}
-// 		if (i >= size)
-// 		{
-// 			size += G_BUFFER;
-// 			realloc_buffer(line, size);
-// 			if (!*line)
-// 				return (err_w_code("Error: Realloc fails", EXIT_FAILURE));
-// 		}
-// 	}
-// 	return (EXIT_SUCCESS);
-// }
-
 static int	process_read(char **line, int fd, int *eof, int size)
 {
 	int		byte;
@@ -87,7 +52,7 @@ static int	process_read(char **line, int fd, int *eof, int size)
 		if (byte == 0 || c == '\n')
 			break ;
 		(*line)[index++] = c;
-		if (index >= size)
+		if (index <= size)
 		{
 			size += G_BUFFER;
 			realloc_buffer(line, size);
@@ -104,8 +69,14 @@ char	*ft_readline(int fd, int *eof)
 	char	*line;
 
 	line = ft_calloc(G_BUFFER + 1, sizeof(char));
-	if (!line || process_read(&line, fd, eof, G_BUFFER) == EXIT_FAILURE)
+	if (line == NULL)
 	{
+		error_msg("Error: Readline NULL");
+		return (NULL);
+	}
+	else if (process_read(&line, fd, eof, G_BUFFER) == EXIT_FAILURE)
+	{
+		free(line);
 		error_msg("Error: Readline fails");
 		return (NULL);
 	}

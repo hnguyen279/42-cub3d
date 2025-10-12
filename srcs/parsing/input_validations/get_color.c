@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thi-huon <thi-huon@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:00:20 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/29 10:11:14 by thi-huon         ###   ########.fr       */
+/*   Updated: 2025/10/12 14:23:45 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	get_color(char **rgb_colors, int *ceil_or_floor)
 		return (err_w_code("Invalid color value", EXIT_FAILURE));
 	if (red > 255 || green > 255 || blue > 255)
 		return (err_w_code("Color value out of range (0-255)", EXIT_FAILURE));
-	//*ceil_or_floor = (red << 16) + (green << 8) + blue;
 	*ceil_or_floor = pack_rgba((uint8_t)red, (uint8_t)green, (uint8_t)blue, 255); //H add
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: thi-mngu <thi-mngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:06:24 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/09/02 12:30:42 by thi-mngu         ###   ########.fr       */
+/*   Updated: 2025/10/12 14:16:12 by thi-mngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,7 @@ int	read_element(t_map *map, char *line)
 
 	splitted_line = ft_split(line, ' ');
 	if (!splitted_line)
-	{
-		free(line);
 		return (err_w_code("No element found", EXIT_FAILURE));
-	}
 	size = ft_2d_len(splitted_line);
 	if (size != 2)
 	{

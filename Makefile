@@ -36,18 +36,18 @@ MAP_C				:=	grid_validation.c \
 
 RENDER_ASSETS_C			:=	render_assets.c \
 							image_utils.c \
-							load_textures.c 
+							load_textures.c
 
 INIT_AND_DISPLAY_C	:=	display.c \
-						init.c 
+						init.c
 
 INPUT_C				:= 	input_camera.c \
 						input_movement.c \
-						input_utils.c 
+						input_utils.c
 
 MINI_MAP_C			:=	minimap.c \
 						minimap_player.c \
-						minimap_viewport.c 
+						minimap_viewport.c
 
 RAY_CASTING_C		:=	wall_column.c \
 						dda_core.c \
@@ -55,7 +55,7 @@ RAY_CASTING_C		:=	wall_column.c \
 						ray_casting.c
 
 CLEAN_UP_C			:=	clean_game.c \
-						error_clean.c 
+						error_clean.c
 
 # All source files
 SRCS			:=	$(addprefix ${MAIN}/, ${MAIN_C}) \
@@ -78,15 +78,15 @@ all: ${LIBFT} .mlx42 ${NAME}
 %.o: %.c
 	${CC} ${CFLAGS} -o $@ -c $< ${INCLUDE}
 
-# Build executable
-${NAME}: ${OBJS} ${LIBFT} .mlx42
-	${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MLX42} ${MLX42_DIR}/build/_deps/glfw-build/src/libglfw3.a -lm -lX11 -lXext -lXrandr -lXinerama -lXcursor -lXi -o ${NAME}
-
-
+# # Build executable
 # ${NAME}: ${OBJS} ${LIBFT} .mlx42
-# 	${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MLX42} \
-# 	-lglfw -lm -lX11 -lXext -lXrandr -lXinerama -lXcursor -lXi \
-# 	-o ${NAME}
+# 	${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MLX42} ${MLX42_DIR}/build/_deps/glfw-build/src/libglfw3.a -lm -lX11 -lXext -lXrandr -lXinerama -lXcursor -lXi -o ${NAME}
+
+
+${NAME}: ${OBJS} ${LIBFT} .mlx42
+	${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MLX42} \
+	-lglfw -lm -lX11 -lXext -lXrandr -lXinerama -lXcursor -lXi \
+	-o ${NAME}
 
 # Build libft
 ${LIBFT}:
