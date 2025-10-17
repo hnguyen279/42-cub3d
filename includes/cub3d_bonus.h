@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thi-huon <thi-huon@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:57:55 by thi-mngu          #+#    #+#             */
-/*   Updated: 2025/10/17 14:04:29 by thi-huon         ###   ########.fr       */
+/*   Updated: 2025/10/17 13:37:43 by thi-huon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "libft.h"
 # include <MLX42/MLX42.h>
-// # include <ctype.h>
+# include <ctype.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <float.h>
@@ -39,6 +39,10 @@
 # define FOV 60.0
 # define PI 3.14159265359
 # define CELL_PX 32
+# define MINI_TILE 16
+# define MINI_TILES_PER_SIDE 10 //check agian
+# define M_WIDTH 200
+# define M_HEIGHT 200
 # define MOVE_SPEED 0.5
 # define ROTATE_SPEED 2
 
@@ -115,7 +119,10 @@ typedef struct s_cub3d_assets
 	mlx_image_t		*walls[4];
 	mlx_image_t		*ceiling;
 	mlx_image_t		*floor;
+	mlx_image_t		*map;
 	mlx_image_t		*scene;
+	mlx_image_t		*minimap_img;
+	mlx_image_t		*minimap_bg;
 }					t_cub3d_assets;
 
 typedef struct s_cam
@@ -160,6 +167,10 @@ typedef struct s_cub
 	t_map			map;
 	t_player		player;
 	t_cub3d_assets	assets;
+	int32_t			mouse_x;
+	int32_t			mouse_y;
+	int32_t			prev_mouse_x;
+	int32_t			prev_mouse_y;
 }					t_cub;
 
 /* Error handling */
@@ -189,6 +200,9 @@ int					map_err(t_map *map, char *line, int fd);
 int					validate_png(char *path);
 
 /* Function declarations Excute */
+void				render_full_map(t_cub *cub);
+void				update_minimap_viewport(t_cub *cub);
+void				draw_player_dot(t_cub *cub, int xy[2], int wh[2]);
 
 void				draw_wall_column(t_cub *cub, int x, t_col *c);
 void				cast_rays(t_cub *cub);
@@ -207,6 +221,7 @@ void				cub3d_init_assets(t_cub *cub);
 
 double				norm_angle(double a);
 int					is_wall(const t_map *map, int x, int y);
+void				mouse_update(t_cub *cub);
 int					rotate_and_escape(t_cub *cub);
 void				handle_input(t_cub *cub);
 
