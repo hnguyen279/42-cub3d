@@ -41,7 +41,7 @@ static mlx_image_t	*pick_tex(t_cub *cub, t_ddaw *w, int side)
 	}
 }
 
-static double	column_setup(t_cub *cub, t_ddaw *w, int side, t_col *c)
+static void	column_setup(t_cub *cub, t_ddaw *w, int side, t_col *c)
 {
 	double	wall_x;
 	double	dist;
@@ -58,24 +58,17 @@ static double	column_setup(t_cub *cub, t_ddaw *w, int side, t_col *c)
 		c->y1 = WINDOW_HEIGHT - 1;
 	c->tex = pick_tex(cub, w, side);
 	if (c->tex == NULL)
-		return (0.0);
+		return ;
 	wall_x = compute_wall_x(cub, w, side);
 	c->tex_x = (int)(wall_x * (double)c->tex->width);
 	c->tex_step_y = (double)c->tex->height / (double)c->h;
 	c->tex_pos_y = (c->y0 - WINDOW_HEIGHT / 2 + c->h / 2) * c->tex_step_y;
-	return (wall_x);
 }
 
 void	draw_column_and_store(t_cub *cub, int x, t_ddaw *w, int side)
 {
 	t_col	c;
-	double	wall_x;
 
-	wall_x = column_setup(cub, w, side, &c);
-	cub->rays[x]->side = side;
-	cub->rays[x]->distance = w->perp;
-	cub->rays[x]->hit_pos.x = cub->player.cur_pos.x + w->perp * w->rdx;
-	cub->rays[x]->hit_pos.y = cub->player.cur_pos.y + w->perp * w->rdy;
-	cub->rays[x]->wall_x = wall_x;
+	column_setup(cub, w, side, &c);
 	draw_wall_column(cub, x, &c);
 }

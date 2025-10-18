@@ -44,7 +44,7 @@ INPUT_C                 := input_camera.c input_movement.c input_utils.c
 
 RAY_CASTING_C           := wall_column.c dda_core.c dda_hit.c ray_casting.c
 
-CLEAN_UP_C              := clean_game.c error_clean.c
+CLEAN_UP_C              := clean_game.c
 
 # Compose mandatory sources
 MAN_SRCS := \
@@ -78,7 +78,7 @@ BN_MINI_MAP_C              := minimap_bonus.c minimap_player_bonus.c minimap_vie
 
 BN_RAY_CASTING_C           := wall_column_bonus.c dda_core_bonus.c dda_hit_bonus.c ray_casting_bonus.c
 
-BN_CLEAN_UP_C              := clean_game_bonus.c error_clean_bonus.c
+BN_CLEAN_UP_C              := clean_game_bonus.c
 
 BN_SRCS := \
   $(addprefix $(BN_DIR)/main/,               $(BN_MAIN_C)) \

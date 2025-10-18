@@ -15,7 +15,6 @@
 
 # include "libft.h"
 # include <MLX42/MLX42.h>
-# include <ctype.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <float.h>
@@ -104,15 +103,6 @@ typedef struct s_map
 	int				max_rows;
 }					t_map;
 
-typedef struct s_ray
-{
-	double			angle;
-	t_dpoint		hit_pos;
-	double			distance;
-	int				side;
-	double			wall_x;
-}					t_ray;
-
 typedef struct s_cub3d_assets
 {
 	mlx_image_t		*player;
@@ -163,7 +153,6 @@ typedef struct s_col
 typedef struct s_cub
 {
 	mlx_t			*mlx;
-	t_ray			**rays;
 	t_map			map;
 	t_player		player;
 	t_cub3d_assets	assets;

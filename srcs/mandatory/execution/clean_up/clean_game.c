@@ -33,26 +33,6 @@ static void	delete_textures(t_cub *cub)
 	delete_img(cub->mlx, &cub->assets.scene);
 }
 
-static void	clean_rays(t_ray ***rays)
-{
-	int	i;
-
-	i = 0;
-	if (!rays || !(*rays))
-		return ;
-	while (i < WINDOW_WIDTH)
-	{
-		if ((*rays)[i])
-		{
-			free((*rays)[i]);
-			(*rays)[i] = NULL;
-		}
-		i++;
-	}
-	free(*rays);
-	*rays = NULL;
-}
-
 void	cub3d_cleanup(t_cub *cub)
 {
 	if (!cub)
@@ -60,8 +40,23 @@ void	cub3d_cleanup(t_cub *cub)
 	if (cub->mlx)
 		mlx_close_window(cub->mlx);
 	delete_textures(cub);
-	clean_rays(&cub->rays);
 	map_cleanup(&cub->map);
 	if (cub->mlx)
 		mlx_terminate(cub->mlx);
+}
+
+void	cub3d_error_clean(t_cub *cub, const char *msg)
+{
+	if (msg)
+	{
+		if (mlx_errno)
+			ft_printf_fd(2, "Error MLX %s: %s\n\n", msg,
+				mlx_strerror(mlx_errno));
+		else if (errno)
+			ft_printf_fd(2, "Error System %s: %s\n\n", msg, strerror(errno));
+		else
+			ft_printf_fd(2, "Error: %s\n", msg);
+	}
+	cub3d_cleanup(cub);
+	exit(1);
 }

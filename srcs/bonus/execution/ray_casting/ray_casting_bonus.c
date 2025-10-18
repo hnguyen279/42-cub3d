@@ -32,8 +32,6 @@ void	cast_rays(t_cub *cub)
 	int		x;
 	int		side;
 
-	if (cub == NULL || cub->rays == NULL)
-		return ;
 	cam = make_cam(&cub->player);
 	x = 0;
 	while (x < WINDOW_WIDTH)

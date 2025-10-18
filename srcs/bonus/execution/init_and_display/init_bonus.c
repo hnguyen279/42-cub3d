@@ -33,23 +33,6 @@ static void	event_close_handler(void *param)
 	exit(0);
 }
 
-static void	cub3d_init_rays(t_cub *cub)
-{
-	int	i;
-
-	i = 0;
-	cub->rays = malloc(sizeof(t_ray *) * WINDOW_WIDTH);
-	if (!cub->rays)
-		cub3d_error_clean(cub, "malloc rays");
-	while (i < WINDOW_WIDTH)
-	{
-		cub->rays[i] = ft_calloc(1, sizeof(t_ray));
-		if (!cub->rays[i])
-			cub3d_error_clean(cub, "malloc ray");
-		i++;
-	}
-}
-
 void	cub3d_init(t_cub *cub)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
@@ -60,7 +43,6 @@ void	cub3d_init(t_cub *cub)
 	cub->mouse_y = WINDOW_HEIGHT / 2;
 	cub->prev_mouse_x = cub->mouse_x;
 	cub->prev_mouse_y = cub->mouse_y;
-	cub3d_init_rays(cub);
 	cub3d_init_assets(cub);
 	if (!mlx_loop_hook(cub->mlx, event_loop_handler, cub))
 		cub3d_error_clean(cub, "mlx_loop_hook failed");

@@ -12,6 +12,8 @@
 		"string_view": "c",
 		"tuple": "c",
 		"type_traits": "c",
-		"vector": "c"
+		"vector": "c",
+		"unistd.h": "c",
+		"stdlib.h": "c"
 	}
 }
