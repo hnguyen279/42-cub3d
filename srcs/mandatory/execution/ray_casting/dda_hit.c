@@ -6,7 +6,7 @@
 /*   By: thi-huon <thi-huon@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 05:20:44 by thi-huon          #+#    #+#             */
-/*   Updated: 2025/09/26 05:20:44 by thi-huon         ###   ########.fr       */
+/*   Updated: 2025/10/18 05:59:45 by thi-huon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ static double	column_setup(t_cub *cub, t_ddaw *w, int side, t_col *c)
 		return (0.0);
 	wall_x = compute_wall_x(cub, w, side);
 	c->tex_x = (int)(wall_x * (double)c->tex->width);
-	if ((side == 0 && w->rdx > 0.0) || (side == 1 && w->rdy < 0.0))
-		c->tex_x = (int)c->tex->width - c->tex_x - 1;
 	c->tex_step_y = (double)c->tex->height / (double)c->h;
 	c->tex_pos_y = (c->y0 - WINDOW_HEIGHT / 2 + c->h / 2) * c->tex_step_y;
 	return (wall_x);
